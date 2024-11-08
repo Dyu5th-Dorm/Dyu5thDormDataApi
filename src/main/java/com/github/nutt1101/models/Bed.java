@@ -10,4 +10,5 @@ import lombok.ToString;
 public class Bed {
     String id;
     Student student;
+    String status;
 }

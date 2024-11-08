@@ -1,6 +1,7 @@
 package com.github.nutt1101;
 
 import com.github.nutt1101.models.Bed;
+import com.github.nutt1101.models.Dormitory;
 import com.github.nutt1101.models.LoginParameters;
 import com.github.nutt1101.models.RequestParameters;
 import org.htmlunit.HttpMethod;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 public class DormDataApi {
@@ -29,6 +31,14 @@ public class DormDataApi {
         webClient.getOptions().setJavaScriptEnabled(false);
     }
 
+    public static List<Bed> getBedData(LoginParameters params, RequestParameters reqParams, boolean sortByBedId) throws IOException {
+        var data = getBedData(params, reqParams);
+        if (sortByBedId) {
+            data.sort(Comparator.comparing(Bed::getId));
+        }
+        return data;
+    }
+
     public static List<Bed> getBedData(LoginParameters params, RequestParameters reqParams) throws IOException {
         if (lastRequestTime == null ||
                 isAtLeastMinutesApart(lastRequestTime, LocalDateTime.now(), 5)
@@ -44,7 +54,10 @@ public class DormDataApi {
         request.setRequestBody(reqParams.toRequestBody());
         WebResponse response = webClient.loadWebResponse(request);
         lastRequestTime = LocalDateTime.now();
-        DormJsonUtils jsonUtils = new DormJsonUtils(response.getContentAsString());
+        DormJsonUtils jsonUtils = new DormJsonUtils(
+                response.getContentAsString(),
+                reqParams.getDormitory()
+        );
         return jsonUtils.parse();
     }
 

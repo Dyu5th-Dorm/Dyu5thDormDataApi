@@ -12,9 +12,11 @@ import java.util.List;
 public class DormJsonUtils {
     private final JSONObject jsonObject;
     private JSONArray bedJsonArray;
+    private final Dormitory dormitory;
 
-    public DormJsonUtils(String jsonString) {
+    public DormJsonUtils(String jsonString, Dormitory dormitory) {
         System.out.println(jsonString);
+        this.dormitory = dormitory;
         this.jsonObject = new JSONObject(jsonString);
         this.prepareRoomJsonObject();
     }
@@ -39,6 +41,8 @@ public class DormJsonUtils {
             JSONObject bedJson = bedJsonArray.getJSONObject(i);
 
             String bedId = bedJson.getString(Keys.JSON_DATA_BED_ID.getVal());
+            int dormId = Character.getNumericValue(bedId.charAt(0));
+            if (dormId != this.dormitory.getId()) continue;
 
             Student student;
             Bed bed;
@@ -61,9 +65,11 @@ public class DormJsonUtils {
                         .build();
             }
 
+            String dormStatus = bedJson.getString(Keys.JSON_DATA_DORM_STATUS.getVal());
             bed = Bed.builder()
                     .id(bedId)
                     .student(student)
+                    .status(dormStatus)
                     .build();
 
             beds.add(bed);

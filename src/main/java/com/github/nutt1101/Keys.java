@@ -8,7 +8,7 @@ public enum Keys {
     BODY_LOGIN_PWD("login_pwd"),
 
     URL_LOGIN("https://adm_ra.dyu.edu.tw/entrance/save_id.php"),
-    URL_DATA_SOURCE("https://adm_ra.dyu.edu.tw/sa/dorm/dorm_qry/kernel/kdorm_space.php?page=MTA5NA=="),
+    URL_DATA_SOURCE("https://adm_ra.dyu.edu.tw/sa/dorm/dorm_qry/kernel/kdorm_inlist.php?page=MTAzOA=="),
 
     JSON_DATA("data"),
 
@@ -25,7 +25,8 @@ public enum Keys {
     JSON_DATA_CITIZENSHIP("nation"),
     JSON_DATA_SQL("space"),
     JSON_DATA_YEAR("yesc"),
-    JSON_DATA_KEYWORDS("keywords");
+    JSON_DATA_KEYWORDS("keywords"),
+    JSON_DATA_DORM_STATUS("dorm_status"),;
 
     private final String val;
 
