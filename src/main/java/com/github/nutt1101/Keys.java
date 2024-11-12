@@ -8,7 +8,7 @@ public enum Keys {
     BODY_LOGIN_PWD("login_pwd"),
 
     URL_LOGIN("https://adm_ra.dyu.edu.tw/entrance/save_id.php"),
-    URL_DATA_SOURCE("https://adm_ra.dyu.edu.tw/sa/dorm/dorm_qry/kernel/kdorm_inlist.php?page=MTAzOA=="),
+    URL_DATA_SOURCE("https://adm_ra.dyu.edu.tw/sa/dorm/dorm_qry/kernel/kdorm_free.php?page=MTEyMw=="),
 
     JSON_DATA("data"),
 

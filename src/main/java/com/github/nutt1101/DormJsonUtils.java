@@ -15,7 +15,6 @@ public class DormJsonUtils {
     private final Dormitory dormitory;
 
     public DormJsonUtils(String jsonString, Dormitory dormitory) {
-        System.out.println(jsonString);
         this.dormitory = dormitory;
         this.jsonObject = new JSONObject(jsonString);
         this.prepareRoomJsonObject();
